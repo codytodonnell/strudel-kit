@@ -26,3 +26,6 @@ __pycache__
 
 # distribution files
 dist/
+
+.next
+.docusaurus

@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => {
 		plugins: [react(), generouted()],
 		base: env.VITE_BASE_URL,
 		server: {
+			host: true,
 			port: 5175,
 			strictPort: true,
 		},

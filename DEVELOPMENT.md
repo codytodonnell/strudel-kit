@@ -33,3 +33,20 @@ Begin modifying the templates in `src/app`.
 STRUDEL Kit is built on top of the Material UI (MUI) component library. [Read more about how to use MUI](https://mui.com/material-ui/getting-started/).
 
 [strudel.science](https://strudel.science)
+
+## Pre-commit Hooks
+
+This project uses husky and lint-staged to run eslint and prettier on staged files when you run a commit using git.
+
+If you encounter the error:
+
+```
+hint: The '.husky/pre-commit' hook was ignored because it's not set as executable.
+```
+
+You may need to modify the permissions to the husky directories on your machine:
+
+```
+chmod ug+x .husky/*
+chmod ug+x .git/hooks/*
+```

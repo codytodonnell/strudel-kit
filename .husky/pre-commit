@@ -1,2 +1,1 @@
-cd strudel-taskflows
 npx lint-staged

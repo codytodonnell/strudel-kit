@@ -15,7 +15,7 @@ import { taskflow } from './_config/taskflow.config';
  */
 const ScenarioComparison: React.FC = () => {
 	const { state, dispatch } = useCompareData();
-
+	const test = '';
 	/**
 	 * Set comparing to true whenever this page renders.
 	 * Set it back to false when the component is torn down.

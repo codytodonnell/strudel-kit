@@ -16,7 +16,8 @@
 		"*.css",
 		"dist",
 		"node_modules",
-		"build"
+		"build",
+		"docs"
 	],
 	"extends": ["airbnb-typescript", "plugin:prettier/recommended"],
 	"plugins": ["@typescript-eslint", "import", "react", "prettier"],

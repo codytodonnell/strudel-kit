@@ -43,6 +43,7 @@ export const TopBar: React.FC = () => {
               My Project
             </Typography>
           </AppLink>
+          <AppLink to="/process-design">Process Design</AppLink>
         </Stack>
         <IconButton size="large" edge="start" color="inherit">
           <AccountCircleIcon />

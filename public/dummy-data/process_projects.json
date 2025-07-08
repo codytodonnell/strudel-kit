@@ -1,0 +1,47 @@
+[
+  {
+    "id": 0,
+    "name": "REE Extraction from HDDs",
+    "processType": "Metal Extraction",
+    "feedstock": "End-of-life Hard Disk Drives",
+    "targetProducts": "Neodymium, Dysprosium, Terbium",
+    "createdDate": "2024-01-15",
+    "status": "In Progress"
+  },
+  {
+    "id": 1,
+    "name": "Lithium Recovery from Batteries",
+    "processType": "Recycling Process",
+    "feedstock": "Lithium-ion Batteries",
+    "targetProducts": "Lithium Carbonate, Cobalt",
+    "createdDate": "2024-01-10",
+    "status": "Complete"
+  },
+  {
+    "id": 2,
+    "name": "Platinum Group Metal Recovery",
+    "processType": "Metal Extraction",
+    "feedstock": "Automotive Catalysts",
+    "targetProducts": "Platinum, Palladium, Rhodium",
+    "createdDate": "2024-01-08",
+    "status": "Draft"
+  },
+  {
+    "id": 3,
+    "name": "Gold Recovery from E-Waste",
+    "processType": "Metal Extraction",
+    "feedstock": "Electronic Circuit Boards",
+    "targetProducts": "Gold, Silver, Copper",
+    "createdDate": "2024-01-05",
+    "status": "Complete"
+  },
+  {
+    "id": 4,
+    "name": "Magnet Recycling Process",
+    "processType": "Separation Process",
+    "feedstock": "Permanent Magnets",
+    "targetProducts": "Neodymium, Iron, Boron",
+    "createdDate": "2024-01-03",
+    "status": "In Progress"
+  }
+]

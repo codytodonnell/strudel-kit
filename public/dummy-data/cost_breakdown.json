@@ -1,0 +1,9 @@
+[
+  {
+    "x": ["Equipment", "Operating", "Raw Materials", "Utilities", "Labor"],
+    "y": [850, 620, 480, 320, 180],
+    "type": "bar",
+    "name": "Cost Breakdown",
+    "marker": { "color": "#1976d2" }
+  }
+]

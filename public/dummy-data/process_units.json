@@ -1,0 +1,42 @@
+[
+  {
+    "id": 0,
+    "unitName": "Primary Shredder",
+    "unitType": "Size Reduction",
+    "operatingTemp": 25,
+    "operatingPressure": 1,
+    "capacity": 500
+  },
+  {
+    "id": 1,
+    "unitName": "Magnetic Separator",
+    "unitType": "Separation",
+    "operatingTemp": 25,
+    "operatingPressure": 1,
+    "capacity": 450
+  },
+  {
+    "id": 2,
+    "unitName": "Acid Leaching Tank",
+    "unitType": "Chemical Reactor",
+    "operatingTemp": 65,
+    "operatingPressure": 1.2,
+    "capacity": 400
+  },
+  {
+    "id": 3,
+    "unitName": "Solvent Extraction Unit",
+    "unitType": "Separation",
+    "operatingTemp": 45,
+    "operatingPressure": 1,
+    "capacity": 350
+  },
+  {
+    "id": 4,
+    "unitName": "Precipitation Tank",
+    "unitType": "Chemical Reactor",
+    "operatingTemp": 35,
+    "operatingPressure": 1,
+    "capacity": 300
+  }
+]

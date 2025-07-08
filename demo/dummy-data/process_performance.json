@@ -1,0 +1,10 @@
+[
+  {
+    "x": ["Shredding", "Magnetic Sep", "Acid Leaching", "Solvent Ext", "Precipitation"],
+    "y": [98, 95, 92, 94, 94],
+    "type": "scatter",
+    "mode": "lines+markers",
+    "name": "Recovery Rate (%)",
+    "line": { "color": "#1976d2" }
+  }
+]

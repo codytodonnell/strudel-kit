@@ -1,0 +1,42 @@
+[
+  {
+    "id": 0,
+    "variable": "Shredder Capacity",
+    "optimalValue": 500,
+    "unit": "kg/h",
+    "lowerBound": 100,
+    "upperBound": 1000
+  },
+  {
+    "id": 1,
+    "variable": "Acid Concentration",
+    "optimalValue": 2.5,
+    "unit": "M",
+    "lowerBound": 1.0,
+    "upperBound": 5.0
+  },
+  {
+    "id": 2,
+    "variable": "Extraction Temperature",
+    "optimalValue": 65,
+    "unit": "°C",
+    "lowerBound": 40,
+    "upperBound": 80
+  },
+  {
+    "id": 3,
+    "variable": "Solvent Flow Rate",
+    "optimalValue": 150,
+    "unit": "L/min",
+    "lowerBound": 50,
+    "upperBound": 300
+  },
+  {
+    "id": 4,
+    "variable": "Residence Time",
+    "optimalValue": 45,
+    "unit": "min",
+    "lowerBound": 20,
+    "upperBound": 120
+  }
+]

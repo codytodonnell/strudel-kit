@@ -1,0 +1,54 @@
+[
+  {
+    "id": "run1",
+    "run_name": "PW Run 1",
+    "date": "2025-07-01",
+    "operator": "Operator A",
+    "flow_rate": 1200,
+    "tss": 45,
+    "cod": 320,
+    "tkn": 18,
+    "acetic_acid": 12,
+    "cost": 2.5,
+    "energy": 0.8
+  },
+  {
+    "id": "run2",
+    "run_name": "PW Run 2",
+    "date": "2025-07-02",
+    "operator": "Operator B",
+    "flow_rate": 1100,
+    "tss": 50,
+    "cod": 310,
+    "tkn": 20,
+    "acetic_acid": 10,
+    "cost": 2.7,
+    "energy": 0.9
+  },
+  {
+    "id": "run3",
+    "run_name": "PW Run 3",
+    "date": "2025-07-03",
+    "operator": "Operator C",
+    "flow_rate": 1300,
+    "tss": 42,
+    "cod": 330,
+    "tkn": 17,
+    "acetic_acid": 13,
+    "cost": 2.6,
+    "energy": 0.85
+  },
+  {
+    "id": "run4",
+    "run_name": "PW Run 4",
+    "date": "2025-07-04",
+    "operator": "Operator D",
+    "flow_rate": 1250,
+    "tss": 48,
+    "cod": 325,
+    "tkn": 19,
+    "acetic_acid": 11,
+    "cost": 2.8,
+    "energy": 0.95
+  }
+]

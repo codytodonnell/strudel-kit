@@ -1,3 +1,16 @@
+import { useCallback, useEffect } from 'react';
+import ReactFlow, {
+  MiniMap,
+  Controls,
+  Background,
+  addEdge,
+  useNodesState,
+  useEdgesState,
+  Edge,
+  Node,
+  Connection,
+} from 'reactflow';
+import 'reactflow/dist/style.css';
 import {
   Box,
   Button,
@@ -9,9 +22,6 @@ import {
   Stepper,
   Typography,
 } from '@mui/material';
-import { useEffect } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-import { useDataFromSource } from '../../../../../hooks/useDataFromSource';
 import { useRunComputation } from '../../../-context/ContextProvider';
 import { setInputsTableData } from '../../../-context/actions';
 import { createFileRoute } from '@tanstack/react-router';
@@ -23,24 +33,107 @@ export const Route = createFileRoute(
   component: DataInputsPage,
 });
 
+interface DiagramData {
+  nodes: Node[];
+  edges: Edge[];
+}
+
 /**
  * Page to display input data after creating or selecting an item from
  * the `<ComputationsList>` page in the run-computation Task Flow.
  * Table columns are configured in `definitions.inputs.table.columns`
  */
+function ProcessDiagramBuilder({
+  value,
+  onChange,
+}: {
+  value: DiagramData;
+  onChange: (data: DiagramData) => void;
+}) {
+  // value: { nodes, edges }
+  const [nodes, , onNodesChange] = useNodesState(value?.nodes || []);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(value?.edges || []);
+
+  useEffect(() => {
+    if (onChange) {
+      onChange({ nodes, edges });
+    }
+  }, [nodes, edges]);
+
+  const onConnect = useCallback(
+    (params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)),
+    [setEdges]
+  );
+
+  return (
+    <div style={{ width: '100%', height: 600 }}>
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+        fitView
+      >
+        <MiniMap />
+        <Controls />
+        <Background />
+      </ReactFlow>
+    </div>
+  );
+}
+
+const exampleDiagram: DiagramData = {
+  nodes: [
+    {
+      id: '1',
+      type: 'input',
+      position: { x: 100, y: 100 },
+      data: { label: 'Shredding' },
+    },
+    {
+      id: '2',
+      type: 'default',
+      position: { x: 350, y: 100 },
+      data: { label: 'Magnetic Separation' },
+    },
+    {
+      id: '3',
+      type: 'default',
+      position: { x: 600, y: 100 },
+      data: { label: 'Leaching' },
+    },
+    {
+      id: '4',
+      type: 'output',
+      position: { x: 850, y: 100 },
+      data: { label: 'Rare Earth Extraction' },
+    },
+  ],
+  edges: [
+    { id: 'e1-2', source: '1', target: '2', type: 'smoothstep' },
+    { id: 'e2-3', source: '2', target: '3', type: 'smoothstep' },
+    { id: 'e3-4', source: '3', target: '4', type: 'smoothstep' },
+  ],
+};
+
 function DataInputsPage() {
   const { state, dispatch } = useRunComputation();
-  // CUSTOMIZE: inputs table data source
-  const inputsData = useDataFromSource('dummy-data/inputs.json');
+  // Store diagram data in state.inputs.table.data as { nodes, edges }
+  let diagramData: DiagramData = state.inputs.table.data?.[0] || {
+    nodes: [],
+    edges: [],
+  };
 
-  /**
-   * Set data for the inputs table when the data loads
-   */
-  useEffect(() => {
-    if (!state.inputs.table.data || state.inputs.table.data.length === 0) {
-      dispatch(setInputsTableData(inputsData));
-    }
-  }, [inputsData]);
+  // Preload example if empty
+  if (!diagramData.nodes.length && !diagramData.edges.length) {
+    diagramData = exampleDiagram;
+    dispatch(setInputsTableData([exampleDiagram]));
+  }
+
+  const handleDiagramChange = (data: DiagramData) => {
+    dispatch(setInputsTableData([data]));
+  };
 
   return (
     <Stack spacing={0} flex={1}>
@@ -60,7 +153,7 @@ function DataInputsPage() {
                 params={{ id: 'new' }}
                 sx={{ color: 'inherit', textDecoration: 'none' }}
               >
-                Data Inputs
+                Process Diagram
               </AppLink>
             </StepLabel>
           </Step>
@@ -121,7 +214,7 @@ function DataInputsPage() {
               marginRight: '-2rem !important',
             }}
           >
-            Input Units
+            Process Units
           </Typography>
           <Typography
             component="li"
@@ -131,7 +224,7 @@ function DataInputsPage() {
               marginRight: '-2rem !important',
             }}
           >
-            Input Streams
+            Streams
           </Typography>
           <Typography
             component="li"
@@ -141,23 +234,15 @@ function DataInputsPage() {
               marginRight: '-2rem !important',
             }}
           >
-            Unit Costing
+            Costing
           </Typography>
         </Stack>
         <Box flex={1} sx={{ overflow: 'hidden' }}>
-          <Container
-            maxWidth="xl"
-            sx={{
-              mt: 4,
-            }}
-          >
+          <Container maxWidth="xl" sx={{ mt: 4 }}>
             <Paper>
-              <DataGrid
-                rows={state.inputs.table.data || []}
-                getRowId={(row) => row[state.inputs.table.dataIdField]}
-                columns={state.inputs.table.columns}
-                disableColumnSelector
-                disableRowSelectionOnClick
+              <ProcessDiagramBuilder
+                value={diagramData}
+                onChange={handleDiagramChange}
               />
             </Paper>
           </Container>

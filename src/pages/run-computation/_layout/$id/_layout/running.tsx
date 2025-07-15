@@ -13,6 +13,7 @@ import {
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import { AppLink } from '../../../../../components/AppLink';
+import { useRunComputation } from '../../../-context/ContextProvider';
 
 export const Route = createFileRoute(
   '/run-computation/_layout/$id/_layout/running'
@@ -26,15 +27,17 @@ export const Route = createFileRoute(
  */
 function RunningComputationPage() {
   const [running, setRunning] = useState(true);
+  const { state } = useRunComputation();
+  const diagram = state.inputs.table.data?.[0];
+  const solver = state.settings?.solver;
 
-  /**
-   * Simulate the time it takes to run the optimization
-   */
+  // Simulate sending to backend/solver
   useEffect(() => {
     setTimeout(() => {
       setRunning(false);
     }, 2000);
-  });
+    // Here you would send { diagram, solver } to your backend or computation engine
+  }, []);
 
   return (
     <Stack spacing={0} flex={1}>
@@ -101,6 +104,14 @@ function RunningComputationPage() {
                 <Typography>
                   You may leave this page and return later. Your progress will
                   not be affected.
+                </Typography>
+                <Typography sx={{ mt: 2 }}>
+                  <b>Solver:</b> {solver || 'Not selected'}
+                </Typography>
+                <Typography sx={{ mt: 1 }}>
+                  <b>Process Steps:</b>{' '}
+                  {diagram?.nodes?.map((n: any) => n.data.label).join(' → ') ||
+                    'No diagram'}
                 </Typography>
               </Box>
               <LinearProgress variant="indeterminate" sx={{ height: 10 }} />

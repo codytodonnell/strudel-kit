@@ -30,6 +30,10 @@ export interface RunComputationState {
     };
   };
   selectedItem?: any;
+  settings?: {
+    solver?: string;
+    [key: string]: any;
+  };
 }
 
 /**
@@ -79,6 +83,9 @@ const initialState: RunComputationState = {
     barChart: {
       data: [],
     },
+  },
+  settings: {
+    solver: undefined,
   },
 };
 
@@ -166,6 +173,15 @@ function runComputationReducer(
             ...state.results.barChart,
             data: action.payload,
           },
+        },
+      };
+    }
+    case RunComputationActionType.SET_SETTINGS: {
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          ...action.payload,
         },
       };
     }

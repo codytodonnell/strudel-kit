@@ -6,7 +6,6 @@ import {
   Grid,
   MenuItem,
   Paper,
-  Select,
   Stack,
   Step,
   StepLabel,
@@ -17,6 +16,9 @@ import {
 import { useState } from 'react';
 import { AppLink } from '../../../../../components/AppLink';
 import { createFileRoute } from '@tanstack/react-router';
+import { useRunComputation } from '../../../-context/ContextProvider';
+import { setSettings } from '../../../-context/actions';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 export const Route = createFileRoute(
   '/run-computation/_layout/$id/_layout/settings'
@@ -31,6 +33,12 @@ export const Route = createFileRoute(
  */
 function SettingsPage() {
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const { state, dispatch } = useRunComputation();
+  const solverValue = state.settings?.solver || '';
+
+  const handleSolverChange = (event: SelectChangeEvent<string>) => {
+    dispatch(setSettings({ solver: event.target.value as string }));
+  };
 
   const handleAdvancedToggle = () => {
     setShowAdvanced(!showAdvanced);
@@ -101,10 +109,16 @@ function SettingsPage() {
               </Grid>
               <Grid item md={9}>
                 <FormControl fullWidth>
-                  <Select id="solver-select">
-                    <MenuItem value={10}>Solver 1</MenuItem>
-                    <MenuItem value={20}>Solver 2</MenuItem>
-                    <MenuItem value={30}>Solver 3</MenuItem>
+                  <Select
+                    id="solver-select"
+                    value={solverValue}
+                    onChange={handleSolverChange}
+                  >
+                    <MenuItem value={''} disabled>
+                      Select a solver
+                    </MenuItem>
+                    <MenuItem value={'scip'}>SCIP</MenuItem>
+                    <MenuItem value={'Baron'}>Baron</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>

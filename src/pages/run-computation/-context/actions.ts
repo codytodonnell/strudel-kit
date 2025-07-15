@@ -6,6 +6,7 @@ export enum RunComputationActionType {
   SET_RESULTS_TABLE_DATA = 'SET_RESULTS_TABLE_DATA',
   SET_RESULTS_LINECHART_DATA = 'SET_RESULTS_LINECHART_DATA',
   SET_RESULTS_BARCHART_DATA = 'SET_RESULTS_BARCHART_DATA',
+  SET_SETTINGS = 'SET_SETTINGS',
 }
 
 export interface RunComputationAction {
@@ -45,5 +46,12 @@ export const setResultsBarChartData = (
   data: RunComputationState['results']['barChart']['data']
 ): RunComputationAction => ({
   type: RunComputationActionType.SET_RESULTS_BARCHART_DATA,
+  payload: data,
+});
+
+export const setSettings = (
+  data: RunComputationState['settings']
+): RunComputationAction => ({
+  type: RunComputationActionType.SET_SETTINGS,
   payload: data,
 });

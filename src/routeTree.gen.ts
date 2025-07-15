@@ -21,7 +21,6 @@ import { Route as ExplorePokemonIndexImport } from './pages/explore-pokemon/inde
 import { Route as ExploreDataIndexImport } from './pages/explore-data/index';
 import { Route as SearchDataRepositoriesIdImport } from './pages/search-data-repositories/$id';
 import { Route as RunComputationLayoutImport } from './pages/run-computation/_layout';
-import { Route as ProcessDesignLayoutImport } from './pages/process-design/_layout';
 import { Route as MonitorActivitiesDetailImport } from './pages/monitor-activities/detail';
 import { Route as MonitorActivitiesCalendarImport } from './pages/monitor-activities/calendar';
 import { Route as ExplorePokemonNameImport } from './pages/explore-pokemon/$name';
@@ -30,7 +29,6 @@ import { Route as ContributeDataLayoutImport } from './pages/contribute-data/_la
 import { Route as CompareProducedWaterLayoutImport } from './pages/compare-produced-water/_layout';
 import { Route as CompareDataLayoutImport } from './pages/compare-data/_layout';
 import { Route as RunComputationLayoutIndexImport } from './pages/run-computation/_layout/index';
-import { Route as ProcessDesignLayoutIndexImport } from './pages/process-design/_layout/index';
 import { Route as ContributeDataLayoutIndexImport } from './pages/contribute-data/_layout/index';
 import { Route as CompareProducedWaterLayoutIndexImport } from './pages/compare-produced-water/_layout/index';
 import { Route as CompareDataLayoutIndexImport } from './pages/compare-data/_layout/index';
@@ -41,28 +39,19 @@ import { Route as CompareProducedWaterLayoutCompareImport } from './pages/compar
 import { Route as CompareDataLayoutNewImport } from './pages/compare-data/_layout/new';
 import { Route as CompareDataLayoutCompareImport } from './pages/compare-data/_layout/compare';
 import { Route as RunComputationLayoutIdLayoutImport } from './pages/run-computation/_layout/$id/_layout';
-import { Route as ProcessDesignLayoutIdLayoutImport } from './pages/process-design/_layout/$id/_layout';
 import { Route as RunComputationLayoutIdLayoutSettingsImport } from './pages/run-computation/_layout/$id/_layout/settings';
 import { Route as RunComputationLayoutIdLayoutRunningImport } from './pages/run-computation/_layout/$id/_layout/running';
 import { Route as RunComputationLayoutIdLayoutResultsImport } from './pages/run-computation/_layout/$id/_layout/results';
 import { Route as RunComputationLayoutIdLayoutDataInputsImport } from './pages/run-computation/_layout/$id/_layout/data-inputs';
-import { Route as ProcessDesignLayoutIdLayoutSolverImport } from './pages/process-design/_layout/$id/_layout/solver';
-import { Route as ProcessDesignLayoutIdLayoutRunningImport } from './pages/process-design/_layout/$id/_layout/running';
-import { Route as ProcessDesignLayoutIdLayoutResultsImport } from './pages/process-design/_layout/$id/_layout/results';
-import { Route as ProcessDesignLayoutIdLayoutDiagramImport } from './pages/process-design/_layout/$id/_layout/diagram';
 
 // Create Virtual Routes
 
 const RunComputationImport = createFileRoute('/run-computation')();
-const ProcessDesignImport = createFileRoute('/process-design')();
 const ContributeDataImport = createFileRoute('/contribute-data')();
 const CompareProducedWaterImport = createFileRoute('/compare-produced-water')();
 const CompareDataImport = createFileRoute('/compare-data')();
 const RunComputationLayoutIdImport = createFileRoute(
   '/run-computation/_layout/$id'
-)();
-const ProcessDesignLayoutIdImport = createFileRoute(
-  '/process-design/_layout/$id'
 )();
 
 // Create/Update Routes
@@ -70,12 +59,6 @@ const ProcessDesignLayoutIdImport = createFileRoute(
 const RunComputationRoute = RunComputationImport.update({
   id: '/run-computation',
   path: '/run-computation',
-  getParentRoute: () => rootRoute,
-} as any);
-
-const ProcessDesignRoute = ProcessDesignImport.update({
-  id: '/process-design',
-  path: '/process-design',
   getParentRoute: () => rootRoute,
 } as any);
 
@@ -145,11 +128,6 @@ const RunComputationLayoutRoute = RunComputationLayoutImport.update({
   getParentRoute: () => RunComputationRoute,
 } as any);
 
-const ProcessDesignLayoutRoute = ProcessDesignLayoutImport.update({
-  id: '/_layout',
-  getParentRoute: () => ProcessDesignRoute,
-} as any);
-
 const MonitorActivitiesDetailRoute = MonitorActivitiesDetailImport.update({
   id: '/monitor-activities/detail',
   path: '/monitor-activities/detail',
@@ -197,22 +175,10 @@ const RunComputationLayoutIdRoute = RunComputationLayoutIdImport.update({
   getParentRoute: () => RunComputationLayoutRoute,
 } as any);
 
-const ProcessDesignLayoutIdRoute = ProcessDesignLayoutIdImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => ProcessDesignLayoutRoute,
-} as any);
-
 const RunComputationLayoutIndexRoute = RunComputationLayoutIndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => RunComputationLayoutRoute,
-} as any);
-
-const ProcessDesignLayoutIndexRoute = ProcessDesignLayoutIndexImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => ProcessDesignLayoutRoute,
 } as any);
 
 const ContributeDataLayoutIndexRoute = ContributeDataLayoutIndexImport.update({
@@ -281,12 +247,6 @@ const RunComputationLayoutIdLayoutRoute =
     getParentRoute: () => RunComputationLayoutIdRoute,
   } as any);
 
-const ProcessDesignLayoutIdLayoutRoute =
-  ProcessDesignLayoutIdLayoutImport.update({
-    id: '/_layout',
-    getParentRoute: () => ProcessDesignLayoutIdRoute,
-  } as any);
-
 const RunComputationLayoutIdLayoutSettingsRoute =
   RunComputationLayoutIdLayoutSettingsImport.update({
     id: '/settings',
@@ -313,34 +273,6 @@ const RunComputationLayoutIdLayoutDataInputsRoute =
     id: '/data-inputs',
     path: '/data-inputs',
     getParentRoute: () => RunComputationLayoutIdLayoutRoute,
-  } as any);
-
-const ProcessDesignLayoutIdLayoutSolverRoute =
-  ProcessDesignLayoutIdLayoutSolverImport.update({
-    id: '/solver',
-    path: '/solver',
-    getParentRoute: () => ProcessDesignLayoutIdLayoutRoute,
-  } as any);
-
-const ProcessDesignLayoutIdLayoutRunningRoute =
-  ProcessDesignLayoutIdLayoutRunningImport.update({
-    id: '/running',
-    path: '/running',
-    getParentRoute: () => ProcessDesignLayoutIdLayoutRoute,
-  } as any);
-
-const ProcessDesignLayoutIdLayoutResultsRoute =
-  ProcessDesignLayoutIdLayoutResultsImport.update({
-    id: '/results',
-    path: '/results',
-    getParentRoute: () => ProcessDesignLayoutIdLayoutRoute,
-  } as any);
-
-const ProcessDesignLayoutIdLayoutDiagramRoute =
-  ProcessDesignLayoutIdLayoutDiagramImport.update({
-    id: '/diagram',
-    path: '/diagram',
-    getParentRoute: () => ProcessDesignLayoutIdLayoutRoute,
   } as any);
 
 // Populate the FileRoutesByPath interface
@@ -423,20 +355,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/monitor-activities/detail';
       preLoaderRoute: typeof MonitorActivitiesDetailImport;
       parentRoute: typeof rootRoute;
-    };
-    '/process-design': {
-      id: '/process-design';
-      path: '/process-design';
-      fullPath: '/process-design';
-      preLoaderRoute: typeof ProcessDesignImport;
-      parentRoute: typeof rootRoute;
-    };
-    '/process-design/_layout': {
-      id: '/process-design/_layout';
-      path: '/process-design';
-      fullPath: '/process-design';
-      preLoaderRoute: typeof ProcessDesignLayoutImport;
-      parentRoute: typeof ProcessDesignRoute;
     };
     '/run-computation': {
       id: '/run-computation';
@@ -557,33 +475,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContributeDataLayoutIndexImport;
       parentRoute: typeof ContributeDataLayoutImport;
     };
-    '/process-design/_layout/': {
-      id: '/process-design/_layout/';
-      path: '/';
-      fullPath: '/process-design/';
-      preLoaderRoute: typeof ProcessDesignLayoutIndexImport;
-      parentRoute: typeof ProcessDesignLayoutImport;
-    };
     '/run-computation/_layout/': {
       id: '/run-computation/_layout/';
       path: '/';
       fullPath: '/run-computation/';
       preLoaderRoute: typeof RunComputationLayoutIndexImport;
       parentRoute: typeof RunComputationLayoutImport;
-    };
-    '/process-design/_layout/$id': {
-      id: '/process-design/_layout/$id';
-      path: '/$id';
-      fullPath: '/process-design/$id';
-      preLoaderRoute: typeof ProcessDesignLayoutIdImport;
-      parentRoute: typeof ProcessDesignLayoutImport;
-    };
-    '/process-design/_layout/$id/_layout': {
-      id: '/process-design/_layout/$id/_layout';
-      path: '/$id';
-      fullPath: '/process-design/$id';
-      preLoaderRoute: typeof ProcessDesignLayoutIdLayoutImport;
-      parentRoute: typeof ProcessDesignLayoutIdRoute;
     };
     '/run-computation/_layout/$id': {
       id: '/run-computation/_layout/$id';
@@ -598,34 +495,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/run-computation/$id';
       preLoaderRoute: typeof RunComputationLayoutIdLayoutImport;
       parentRoute: typeof RunComputationLayoutIdRoute;
-    };
-    '/process-design/_layout/$id/_layout/diagram': {
-      id: '/process-design/_layout/$id/_layout/diagram';
-      path: '/diagram';
-      fullPath: '/process-design/$id/diagram';
-      preLoaderRoute: typeof ProcessDesignLayoutIdLayoutDiagramImport;
-      parentRoute: typeof ProcessDesignLayoutIdLayoutImport;
-    };
-    '/process-design/_layout/$id/_layout/results': {
-      id: '/process-design/_layout/$id/_layout/results';
-      path: '/results';
-      fullPath: '/process-design/$id/results';
-      preLoaderRoute: typeof ProcessDesignLayoutIdLayoutResultsImport;
-      parentRoute: typeof ProcessDesignLayoutIdLayoutImport;
-    };
-    '/process-design/_layout/$id/_layout/running': {
-      id: '/process-design/_layout/$id/_layout/running';
-      path: '/running';
-      fullPath: '/process-design/$id/running';
-      preLoaderRoute: typeof ProcessDesignLayoutIdLayoutRunningImport;
-      parentRoute: typeof ProcessDesignLayoutIdLayoutImport;
-    };
-    '/process-design/_layout/$id/_layout/solver': {
-      id: '/process-design/_layout/$id/_layout/solver';
-      path: '/solver';
-      fullPath: '/process-design/$id/solver';
-      preLoaderRoute: typeof ProcessDesignLayoutIdLayoutSolverImport;
-      parentRoute: typeof ProcessDesignLayoutIdLayoutImport;
     };
     '/run-computation/_layout/$id/_layout/data-inputs': {
       id: '/run-computation/_layout/$id/_layout/data-inputs';
@@ -744,69 +613,6 @@ const ContributeDataRouteWithChildren = ContributeDataRoute._addFileChildren(
   ContributeDataRouteChildren
 );
 
-interface ProcessDesignLayoutIdLayoutRouteChildren {
-  ProcessDesignLayoutIdLayoutDiagramRoute: typeof ProcessDesignLayoutIdLayoutDiagramRoute;
-  ProcessDesignLayoutIdLayoutResultsRoute: typeof ProcessDesignLayoutIdLayoutResultsRoute;
-  ProcessDesignLayoutIdLayoutRunningRoute: typeof ProcessDesignLayoutIdLayoutRunningRoute;
-  ProcessDesignLayoutIdLayoutSolverRoute: typeof ProcessDesignLayoutIdLayoutSolverRoute;
-}
-
-const ProcessDesignLayoutIdLayoutRouteChildren: ProcessDesignLayoutIdLayoutRouteChildren =
-  {
-    ProcessDesignLayoutIdLayoutDiagramRoute:
-      ProcessDesignLayoutIdLayoutDiagramRoute,
-    ProcessDesignLayoutIdLayoutResultsRoute:
-      ProcessDesignLayoutIdLayoutResultsRoute,
-    ProcessDesignLayoutIdLayoutRunningRoute:
-      ProcessDesignLayoutIdLayoutRunningRoute,
-    ProcessDesignLayoutIdLayoutSolverRoute:
-      ProcessDesignLayoutIdLayoutSolverRoute,
-  };
-
-const ProcessDesignLayoutIdLayoutRouteWithChildren =
-  ProcessDesignLayoutIdLayoutRoute._addFileChildren(
-    ProcessDesignLayoutIdLayoutRouteChildren
-  );
-
-interface ProcessDesignLayoutIdRouteChildren {
-  ProcessDesignLayoutIdLayoutRoute: typeof ProcessDesignLayoutIdLayoutRouteWithChildren;
-}
-
-const ProcessDesignLayoutIdRouteChildren: ProcessDesignLayoutIdRouteChildren = {
-  ProcessDesignLayoutIdLayoutRoute:
-    ProcessDesignLayoutIdLayoutRouteWithChildren,
-};
-
-const ProcessDesignLayoutIdRouteWithChildren =
-  ProcessDesignLayoutIdRoute._addFileChildren(
-    ProcessDesignLayoutIdRouteChildren
-  );
-
-interface ProcessDesignLayoutRouteChildren {
-  ProcessDesignLayoutIndexRoute: typeof ProcessDesignLayoutIndexRoute;
-  ProcessDesignLayoutIdRoute: typeof ProcessDesignLayoutIdRouteWithChildren;
-}
-
-const ProcessDesignLayoutRouteChildren: ProcessDesignLayoutRouteChildren = {
-  ProcessDesignLayoutIndexRoute: ProcessDesignLayoutIndexRoute,
-  ProcessDesignLayoutIdRoute: ProcessDesignLayoutIdRouteWithChildren,
-};
-
-const ProcessDesignLayoutRouteWithChildren =
-  ProcessDesignLayoutRoute._addFileChildren(ProcessDesignLayoutRouteChildren);
-
-interface ProcessDesignRouteChildren {
-  ProcessDesignLayoutRoute: typeof ProcessDesignLayoutRouteWithChildren;
-}
-
-const ProcessDesignRouteChildren: ProcessDesignRouteChildren = {
-  ProcessDesignLayoutRoute: ProcessDesignLayoutRouteWithChildren,
-};
-
-const ProcessDesignRouteWithChildren = ProcessDesignRoute._addFileChildren(
-  ProcessDesignRouteChildren
-);
-
 interface RunComputationLayoutIdLayoutRouteChildren {
   RunComputationLayoutIdLayoutDataInputsRoute: typeof RunComputationLayoutIdLayoutDataInputsRoute;
   RunComputationLayoutIdLayoutResultsRoute: typeof RunComputationLayoutIdLayoutResultsRoute;
@@ -880,7 +686,6 @@ export interface FileRoutesByFullPath {
   '/explore-pokemon/$name': typeof ExplorePokemonNameRoute;
   '/monitor-activities/calendar': typeof MonitorActivitiesCalendarRoute;
   '/monitor-activities/detail': typeof MonitorActivitiesDetailRoute;
-  '/process-design': typeof ProcessDesignLayoutRouteWithChildren;
   '/run-computation': typeof RunComputationLayoutRouteWithChildren;
   '/search-data-repositories/$id': typeof SearchDataRepositoriesIdRoute;
   '/explore-data': typeof ExploreDataIndexRoute;
@@ -897,14 +702,8 @@ export interface FileRoutesByFullPath {
   '/compare-data/': typeof CompareDataLayoutIndexRoute;
   '/compare-produced-water/': typeof CompareProducedWaterLayoutIndexRoute;
   '/contribute-data/': typeof ContributeDataLayoutIndexRoute;
-  '/process-design/': typeof ProcessDesignLayoutIndexRoute;
   '/run-computation/': typeof RunComputationLayoutIndexRoute;
-  '/process-design/$id': typeof ProcessDesignLayoutIdLayoutRouteWithChildren;
   '/run-computation/$id': typeof RunComputationLayoutIdLayoutRouteWithChildren;
-  '/process-design/$id/diagram': typeof ProcessDesignLayoutIdLayoutDiagramRoute;
-  '/process-design/$id/results': typeof ProcessDesignLayoutIdLayoutResultsRoute;
-  '/process-design/$id/running': typeof ProcessDesignLayoutIdLayoutRunningRoute;
-  '/process-design/$id/solver': typeof ProcessDesignLayoutIdLayoutSolverRoute;
   '/run-computation/$id/data-inputs': typeof RunComputationLayoutIdLayoutDataInputsRoute;
   '/run-computation/$id/results': typeof RunComputationLayoutIdLayoutResultsRoute;
   '/run-computation/$id/running': typeof RunComputationLayoutIdLayoutRunningRoute;
@@ -920,7 +719,6 @@ export interface FileRoutesByTo {
   '/explore-pokemon/$name': typeof ExplorePokemonNameRoute;
   '/monitor-activities/calendar': typeof MonitorActivitiesCalendarRoute;
   '/monitor-activities/detail': typeof MonitorActivitiesDetailRoute;
-  '/process-design': typeof ProcessDesignLayoutIndexRoute;
   '/run-computation': typeof RunComputationLayoutIndexRoute;
   '/search-data-repositories/$id': typeof SearchDataRepositoriesIdRoute;
   '/explore-data': typeof ExploreDataIndexRoute;
@@ -934,12 +732,7 @@ export interface FileRoutesByTo {
   '/contribute-data/new': typeof ContributeDataLayoutNewRoute;
   '/contribute-data/portal': typeof ContributeDataLayoutPortalRoute;
   '/contribute-data/review': typeof ContributeDataLayoutReviewRoute;
-  '/process-design/$id': typeof ProcessDesignLayoutIdLayoutRouteWithChildren;
   '/run-computation/$id': typeof RunComputationLayoutIdLayoutRouteWithChildren;
-  '/process-design/$id/diagram': typeof ProcessDesignLayoutIdLayoutDiagramRoute;
-  '/process-design/$id/results': typeof ProcessDesignLayoutIdLayoutResultsRoute;
-  '/process-design/$id/running': typeof ProcessDesignLayoutIdLayoutRunningRoute;
-  '/process-design/$id/solver': typeof ProcessDesignLayoutIdLayoutSolverRoute;
   '/run-computation/$id/data-inputs': typeof RunComputationLayoutIdLayoutDataInputsRoute;
   '/run-computation/$id/results': typeof RunComputationLayoutIdLayoutResultsRoute;
   '/run-computation/$id/running': typeof RunComputationLayoutIdLayoutRunningRoute;
@@ -959,8 +752,6 @@ export interface FileRoutesById {
   '/explore-pokemon/$name': typeof ExplorePokemonNameRoute;
   '/monitor-activities/calendar': typeof MonitorActivitiesCalendarRoute;
   '/monitor-activities/detail': typeof MonitorActivitiesDetailRoute;
-  '/process-design': typeof ProcessDesignRouteWithChildren;
-  '/process-design/_layout': typeof ProcessDesignLayoutRouteWithChildren;
   '/run-computation': typeof RunComputationRouteWithChildren;
   '/run-computation/_layout': typeof RunComputationLayoutRouteWithChildren;
   '/search-data-repositories/$id': typeof SearchDataRepositoriesIdRoute;
@@ -978,16 +769,9 @@ export interface FileRoutesById {
   '/compare-data/_layout/': typeof CompareDataLayoutIndexRoute;
   '/compare-produced-water/_layout/': typeof CompareProducedWaterLayoutIndexRoute;
   '/contribute-data/_layout/': typeof ContributeDataLayoutIndexRoute;
-  '/process-design/_layout/': typeof ProcessDesignLayoutIndexRoute;
   '/run-computation/_layout/': typeof RunComputationLayoutIndexRoute;
-  '/process-design/_layout/$id': typeof ProcessDesignLayoutIdRouteWithChildren;
-  '/process-design/_layout/$id/_layout': typeof ProcessDesignLayoutIdLayoutRouteWithChildren;
   '/run-computation/_layout/$id': typeof RunComputationLayoutIdRouteWithChildren;
   '/run-computation/_layout/$id/_layout': typeof RunComputationLayoutIdLayoutRouteWithChildren;
-  '/process-design/_layout/$id/_layout/diagram': typeof ProcessDesignLayoutIdLayoutDiagramRoute;
-  '/process-design/_layout/$id/_layout/results': typeof ProcessDesignLayoutIdLayoutResultsRoute;
-  '/process-design/_layout/$id/_layout/running': typeof ProcessDesignLayoutIdLayoutRunningRoute;
-  '/process-design/_layout/$id/_layout/solver': typeof ProcessDesignLayoutIdLayoutSolverRoute;
   '/run-computation/_layout/$id/_layout/data-inputs': typeof RunComputationLayoutIdLayoutDataInputsRoute;
   '/run-computation/_layout/$id/_layout/results': typeof RunComputationLayoutIdLayoutResultsRoute;
   '/run-computation/_layout/$id/_layout/running': typeof RunComputationLayoutIdLayoutRunningRoute;
@@ -1005,7 +789,6 @@ export interface FileRouteTypes {
     | '/explore-pokemon/$name'
     | '/monitor-activities/calendar'
     | '/monitor-activities/detail'
-    | '/process-design'
     | '/run-computation'
     | '/search-data-repositories/$id'
     | '/explore-data'
@@ -1022,14 +805,8 @@ export interface FileRouteTypes {
     | '/compare-data/'
     | '/compare-produced-water/'
     | '/contribute-data/'
-    | '/process-design/'
     | '/run-computation/'
-    | '/process-design/$id'
     | '/run-computation/$id'
-    | '/process-design/$id/diagram'
-    | '/process-design/$id/results'
-    | '/process-design/$id/running'
-    | '/process-design/$id/solver'
     | '/run-computation/$id/data-inputs'
     | '/run-computation/$id/results'
     | '/run-computation/$id/running'
@@ -1044,7 +821,6 @@ export interface FileRouteTypes {
     | '/explore-pokemon/$name'
     | '/monitor-activities/calendar'
     | '/monitor-activities/detail'
-    | '/process-design'
     | '/run-computation'
     | '/search-data-repositories/$id'
     | '/explore-data'
@@ -1058,12 +834,7 @@ export interface FileRouteTypes {
     | '/contribute-data/new'
     | '/contribute-data/portal'
     | '/contribute-data/review'
-    | '/process-design/$id'
     | '/run-computation/$id'
-    | '/process-design/$id/diagram'
-    | '/process-design/$id/results'
-    | '/process-design/$id/running'
-    | '/process-design/$id/solver'
     | '/run-computation/$id/data-inputs'
     | '/run-computation/$id/results'
     | '/run-computation/$id/running'
@@ -1081,8 +852,6 @@ export interface FileRouteTypes {
     | '/explore-pokemon/$name'
     | '/monitor-activities/calendar'
     | '/monitor-activities/detail'
-    | '/process-design'
-    | '/process-design/_layout'
     | '/run-computation'
     | '/run-computation/_layout'
     | '/search-data-repositories/$id'
@@ -1100,16 +869,9 @@ export interface FileRouteTypes {
     | '/compare-data/_layout/'
     | '/compare-produced-water/_layout/'
     | '/contribute-data/_layout/'
-    | '/process-design/_layout/'
     | '/run-computation/_layout/'
-    | '/process-design/_layout/$id'
-    | '/process-design/_layout/$id/_layout'
     | '/run-computation/_layout/$id'
     | '/run-computation/_layout/$id/_layout'
-    | '/process-design/_layout/$id/_layout/diagram'
-    | '/process-design/_layout/$id/_layout/results'
-    | '/process-design/_layout/$id/_layout/running'
-    | '/process-design/_layout/$id/_layout/solver'
     | '/run-computation/_layout/$id/_layout/data-inputs'
     | '/run-computation/_layout/$id/_layout/results'
     | '/run-computation/_layout/$id/_layout/running'
@@ -1126,7 +888,6 @@ export interface RootRouteChildren {
   ExplorePokemonNameRoute: typeof ExplorePokemonNameRoute;
   MonitorActivitiesCalendarRoute: typeof MonitorActivitiesCalendarRoute;
   MonitorActivitiesDetailRoute: typeof MonitorActivitiesDetailRoute;
-  ProcessDesignRoute: typeof ProcessDesignRouteWithChildren;
   RunComputationRoute: typeof RunComputationRouteWithChildren;
   SearchDataRepositoriesIdRoute: typeof SearchDataRepositoriesIdRoute;
   ExploreDataIndexRoute: typeof ExploreDataIndexRoute;
@@ -1145,7 +906,6 @@ const rootRouteChildren: RootRouteChildren = {
   ExplorePokemonNameRoute: ExplorePokemonNameRoute,
   MonitorActivitiesCalendarRoute: MonitorActivitiesCalendarRoute,
   MonitorActivitiesDetailRoute: MonitorActivitiesDetailRoute,
-  ProcessDesignRoute: ProcessDesignRouteWithChildren,
   RunComputationRoute: RunComputationRouteWithChildren,
   SearchDataRepositoriesIdRoute: SearchDataRepositoriesIdRoute,
   ExploreDataIndexRoute: ExploreDataIndexRoute,
@@ -1173,7 +933,6 @@ export const routeTree = rootRoute
         "/explore-pokemon/$name",
         "/monitor-activities/calendar",
         "/monitor-activities/detail",
-        "/process-design",
         "/run-computation",
         "/search-data-repositories/$id",
         "/explore-data/",
@@ -1243,20 +1002,6 @@ export const routeTree = rootRoute
     "/monitor-activities/detail": {
       "filePath": "monitor-activities/detail.tsx"
     },
-    "/process-design": {
-      "filePath": "process-design",
-      "children": [
-        "/process-design/_layout"
-      ]
-    },
-    "/process-design/_layout": {
-      "filePath": "process-design/_layout.tsx",
-      "parent": "/process-design",
-      "children": [
-        "/process-design/_layout/",
-        "/process-design/_layout/$id"
-      ]
-    },
     "/run-computation": {
       "filePath": "run-computation",
       "children": [
@@ -1325,30 +1070,9 @@ export const routeTree = rootRoute
       "filePath": "contribute-data/_layout/index.tsx",
       "parent": "/contribute-data/_layout"
     },
-    "/process-design/_layout/": {
-      "filePath": "process-design/_layout/index.tsx",
-      "parent": "/process-design/_layout"
-    },
     "/run-computation/_layout/": {
       "filePath": "run-computation/_layout/index.tsx",
       "parent": "/run-computation/_layout"
-    },
-    "/process-design/_layout/$id": {
-      "filePath": "process-design/_layout/$id",
-      "parent": "/process-design/_layout",
-      "children": [
-        "/process-design/_layout/$id/_layout"
-      ]
-    },
-    "/process-design/_layout/$id/_layout": {
-      "filePath": "process-design/_layout/$id/_layout.tsx",
-      "parent": "/process-design/_layout/$id",
-      "children": [
-        "/process-design/_layout/$id/_layout/diagram",
-        "/process-design/_layout/$id/_layout/results",
-        "/process-design/_layout/$id/_layout/running",
-        "/process-design/_layout/$id/_layout/solver"
-      ]
     },
     "/run-computation/_layout/$id": {
       "filePath": "run-computation/_layout/$id",
@@ -1366,22 +1090,6 @@ export const routeTree = rootRoute
         "/run-computation/_layout/$id/_layout/running",
         "/run-computation/_layout/$id/_layout/settings"
       ]
-    },
-    "/process-design/_layout/$id/_layout/diagram": {
-      "filePath": "process-design/_layout/$id/_layout/diagram.tsx",
-      "parent": "/process-design/_layout/$id/_layout"
-    },
-    "/process-design/_layout/$id/_layout/results": {
-      "filePath": "process-design/_layout/$id/_layout/results.tsx",
-      "parent": "/process-design/_layout/$id/_layout"
-    },
-    "/process-design/_layout/$id/_layout/running": {
-      "filePath": "process-design/_layout/$id/_layout/running.tsx",
-      "parent": "/process-design/_layout/$id/_layout"
-    },
-    "/process-design/_layout/$id/_layout/solver": {
-      "filePath": "process-design/_layout/$id/_layout/solver.tsx",
-      "parent": "/process-design/_layout/$id/_layout"
     },
     "/run-computation/_layout/$id/_layout/data-inputs": {
       "filePath": "run-computation/_layout/$id/_layout/data-inputs.tsx",
